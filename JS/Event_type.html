@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class= 'content'>
+        <h1>Different types in JavaScript</h1>
+        <div class="button_container">
+            <div class="button_su">
+                <span class="su_button_circle"></span>
+                <a href="#" class="button_su_inner" onclick="alert('Noice')">       <!-- 1 way-->
+                    <span class="button_text_container">
+                        Simple Inline alert()
+                    </span>
+                </a>
+            </div>
+            
+            <div class="button_su">
+                <span class="su_button_circle"></span>
+                <a href="#" class="button_su_inner" onclick="callingFunction()">
+                    <span class="button_text_container">
+                        By calling a Function
+                    </span>
+                </a>
+            </div>
+
+            <div class="button_su">
+                <span class="su_button_circle"></span>
+                <a href="#" class="button_su_inner" id="thirdWay">
+                    <span class="button_text_container">
+                        Inline event
+                    </span>
+                </a>
+            </div>
+
+            <div class="button_su">
+                <span class="su_button_circle"></span>
+                <a href="#" class="button_su_inner" id="fourthWay">
+                    <span class="button_text_container">
+                        Event Listners
+                    </span>
+                </a>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        //2nd way
+        const callingFunction =() =>{
+            alert('most common way')
+        }
+        
+        //3rd way
+        const thirdWay = document.getElementById('thirdWay')
+        thirdWay.onclick = function(){
+            alert('most common way pt.2')
+        }
+
+        thirdWay.onclick = function(){
+            console.log('most common way pt.2')
+        }
+
+        //4th way
+        const fourthWay = document.querySelector('#fourthWay')
+        fourthWay.addEventListener('click', () =>{
+            alert("4th Way")
+        })
+
+        fourthWay.addEventListener('click', () =>{
+           console.log("4th Way")
+        })
+    </script>
+</body>
+</html>

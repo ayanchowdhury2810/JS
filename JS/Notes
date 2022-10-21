@@ -1,0 +1,1297 @@
+Data Types in JavaScript
+1.  undefined
+2.  Boolean
+3.  Number
+4.  String
+5.  BigInt
+6.  Symbol
+
+------------------------------------------------------------------------------------------
+Difference between null and undefined:
+NULL-
+var a = null;
+console.log(a);             //OUTPUT- null
+
+var a = null;
+console.log(typeof(a));     //OUTPUT- object
+
+UNDEFINED-
+var a;
+console.log(a);             //OUTPUT- undefined
+
+var a;
+console.log(typeof(a));     //OUTPUT- undefined
+
+----------------------------------------------------------------------------------------------
+NaN- it is a property of the global object. In other words, it is a variable in global scope. 
+    The initial value is Not-a-Number. isNan() function is used to check whether a variable is a number or not.
+----------------------------------------------------------------------------------------------
+
+Operators in JavaScript-
+1.  Assignment Operator
+2.  Arithmatic Operator
+3.  Comparison Operator
+4.  Logical Operator
+5.  String Operator
+6.  Conditional (ternary) Operator
+----------------------------------------------------------------------------------------------
+
+Control statements and loops-
+1.  if else
+2.  switch statement
+3.  While loop
+4.  Do-while loop
+5.  for loop
+6.  for in loop 
+
+    var a = ['t','y','u','e','r'];
+    for(let elements in a){
+        console.log(elements);
+    }                                   // prints the index number of all the elements in the array
+
+7.  for of loop 
+    var a = ['t','y','u','e','r'];
+    for(let elements of a){
+        console.log(elements);
+    }                                   // prints all the elements in the array
+
+8.  conditional (ternary) operator- it is the only JavaScript operator that takes 3 operands
+    variablename = (condition)? value1 : value2
+    eg:
+    var c=30;
+    console.log((c>4)?"lost":"won");
+----------------------------------------------------------------------------------------------
+
+truthy and falsy
+there are total 5 falsy values in JavaScript:
+0, "", undefined, null, NaN, false
+If any of the above value is there as a condition then it will skip that condition and move to next condition.
+----------------------------------------------------------------------------------------------
+
+Functions in JavaScript:
+SYNTAX-
+function sum(){
+    var a =10, b=20;
+    var total = a+b;
+    console.log(total)
+}
+sum();
+=======================
+function sum(a,b){
+    var total = a+b;
+    console.log(total)
+}
+sum(40,60);
+=======================
+
+Function Expression:
+function sum(a,b){
+    return total= a+b;
+}
+var h =sum(40,30);      //Function Expression
+console.log("The sum is: "+ h);
+=======================
+
+Anonymous Function-
+var h = function (a,b){
+    return total= a+b;
+}
+
+console.log("The sum is: "+ h(5,15));
+----------------------------------------------------------------------------------------------
+
+LET vs CONST vs VAR-
+Scope of VAR is known as Function scope
+Scope of LET and CONST is known as Block scope
+=======================
+The value assigned in const cannot be changed again whereas in var and let it can be changed as many times you want.
+=======================
+VAR (the whole code will run irrespective of where you declare a variable)- 
+function c(){
+    var n= "x";
+    console.log(n);
+
+    if(true){
+        var l = "y";
+        console.log("inner " + l);
+        console.log("inner " + n);
+    }
+    console.log("outer " + l);
+}
+c();
+=======================
+LET(the variable declared inside the block of if statement will not be executed)-
+function c(){
+    let n= "x";
+    console.log(n);
+
+    if(true){
+        let l = "y";
+        console.log("inner " + l);
+        console.log("inner " + n);
+    }
+    console.log("outer " + l);      //ERROR
+}
+c();
+=======================
+CONST(the variable declared inside the block of if statement will not be executed)-
+function c(){
+    const n= "x";
+    console.log(n);
+
+    if(true){
+        const l = "y";
+        console.log("inner " + l);
+        console.log("inner " + n);
+    }
+    console.log("outer " + l);      //ERROR
+}
+c();
+----------------------------------------------------------------------------------------------
+
+Template Literals-
+Shorter form of writing codes. Eg-
+for(var i=1; i<=10; i++){
+    var n = 9;
+    console.log( `${n} * ${i} = ${n*i}` )
+}
+----------------------------------------------------------------------------------------------
+
+Default Parameter-
+Default function Parameters allow names parameters to be initialized with default values or undefined is passed
+function n(a,b){
+    return a*b
+}
+console.log(n(3))       //Output- NaN (because only one argument is passed)
+=======================
+
+function n(a,b=5){
+    return a*b
+}
+console.log(n(3))   //here value of b is already assigned so Output will be 15
+----------------------------------------------------------------------------------------------
+
+Fat Arrow Function-
+function s(){
+    let a=9, b =10;
+    let g = a+b;
+    return(`The sum is ${g}`)
+}
+console.log(s())
+======================= The above code can also be written as-
+const s = () => {       // here => is written in place of keyword function
+    let a=9, b =10;
+    let g = a+b;
+    return(`The sum is ${g}`)
+}
+console.log(s())
+=======================
+According to fat arrow function, if the code of one line we can remove the parenthesis, and even remove the return keyword. So the above
+code can also be written as-
+
+const s = () => `The sum is ${(a=9)+(b=10)}`
+console.log(s())
+----------------------------------------------------------------------------------------------
+
+Arrays-
+In JavaScript, you can store elements of different datatype in an array.
+Traversing an array:
+var a = ['t','y','u','e','r'];
+console.log(a);
+=======================
+var a = ['t','y','u','e','r'];
+console.log(a[4]);
+console.log(a.length);      //Output- 5
+console.log(a[a.length-1]);     //for printing the last element
+=======================
+var a = ['t','y','u','e','r'];
+for(var i=0; i<a.length; i++){
+    console.log(a[i]);
+}
+----------------------------------------------------------------------------------------------
+
+METHODS IN ARRAY-
+1. Traversal in array
+
+forEach()- Calls a function for each element in the array.
+var a = ['t','y','u','e','r'];
+a.forEach(function(element, index, array){
+    console.log(element+ ", index: "+ index+ ", array: "+ array)
+})
+=======================
+
+above code using fat arrow function-
+var a = ['t','y','u','e','r'];
+a.forEach((element, index, array)=>{
+    console.log(element+ ", index: "+ index+ ", array: "+ array)
+})
+***********************************
+
+2.Searching and filter in an Array
+
+indexOf()- returns the index number of the element where it occurs the first time in the array from beginning. If the element is not present it will return -1.
+
+var a = ['t','y','u','e','r'];
+console.log(a.indexOf('r'));
+=======================
+
+var a = ['t','y','u','e','r'];
+console.log(a.indexOf('t', 2));     //(element you want to search, index number from which you want to search in the array)
+
+***********************************
+
+lastIndexOf()- returns the index number of the element where it occurs the first time in the array from end. If the element is not present it will return -1.
+var a = ['t','y','u','e','r','y'];
+console.log(a.lastIndexOf('y'));
+
+***********************************
+
+includes()- determines whether the array contains a value. Returns boolean value.
+
+var a = ['t','y','u','e','r','y'];
+console.log(a.includes('i'));
+
+***********************************
+
+find()- Returns the found element in the array, if some element in the array satisfies the testing function, or undefined if not found. 
+It returns only one element(first found element).
+
+const p = [200, 300, 350, 400, 450, 500, 600];
+const findElements = p.find((curVal) =>{             //.find(prices, index, array)
+    return curVal < 400
+})
+console.log(findElements)
+=======================
+
+const p = [200, 300, 350, 400, 450, 500, 600];
+const findElements = p.find((curVal) =>  curVal < 400 )  //.find(prices, index, array)
+console.log(findElements)
+
+***********************************
+
+findIndex()- Returns the found index in the element in the array. Returns -1 if not found.
+const p = [200, 300, 350, 400, 450, 500, 600];
+const findElements = p.findIndex((curVal) =>  curVal < 400 )  
+console.log(findElements)
+
+***********************************
+
+filter()- Return a new array containing all elements of the calling array for the provided filtering function returns true.
+const p = [200, 300, 350, 400, 450, 500, 600]
+const newP = p.filter((element) =>  element < 400 )  
+console.log(newP)
+
+***********************************
+
+SORT AND COMPARE AN ARRAY-
+
+sort()- sorts the elements of an array in place and returns the sorted array. The default sorting order is ascending, built upon converting the elements into strings, then comparing their sequences of UTF-16 code unit values.
+However, if numbers are sorted as strings, "25" is bigger than "100", because "2" is bigger than "1". Because of this, the sort() method will produce an incorrect result whan sorting numbers.
+
+const months = ["March", "Dec", "Feb", "Nov", "Jan", "Oct"];
+console.log(months.sort());                       //OUTPUT- [ 'Dec', 'Feb', 'Jan', 'March', 'Nov', 'Oct' ]
+=======================
+
+const a = [1,100000000, 34,22, 68, 3, 99, 5]
+console.log(a.sort())                           //OUTPUT- [ 1, 100000000, 22, 3, 34, 5, 68, 99 ]
+
+***********************************
+
+CRUD operations-
+
+push()-  this methods adds one or more elements to the end of an array and returns the new length of the array.
+
+const animals= ['pigs', 'goats', 'sheep'];
+animals.push('hen');
+console.log(animals)
+//const count = animals.push('hen');
+//console.log(count)
+
+***********************************
+unshift()- this method adds one or more elements to the beginning of an array and return the new length of the array.
+
+const animals= ['pigs', 'goats', 'sheep'];
+animals.unshift('hen');
+console.log(animals)
+***********************************
+
+pop()- to remove the last element of the array and returns that element.
+const animals= ['pigs', 'goats', 'sheep', 'cow', 'cats'];
+console.log(animals)
+console.log(animals.pop())
+console.log(animals)
+***********************************
+
+shift()-to remove the first element of the array and returns the element.
+const animals= ['pigs', 'goats', 'sheep', 'cow', 'cats'];
+console.log(animals)
+console.log(animals.shift())
+console.log(animals)
+***********************************
+
+Splice method- returns the elements that are deleted.
+const months= ['Jan', 'march', 'April', 'June', 'July'];
+const newMonths = months.splice(5, 0, "Dec")    //(index number from where to start, index of element till which you want to delete, element to be added)
+console.log(months)
+
+***********************************
+
+Update method- 
+const months= ['Jan', 'march', 'April', 'June', 'July'];
+const newMonths = months.splice(1, 1, "March")    
+console.log(months)
+
+=======================
+
+const months= ['Jan', 'march', 'April', 'June', 'July'];
+const indexMonth = months.indexOf('march')
+if(indexMonth != -1){
+    const newMonths = months.splice(indexMonth, indexMonth, "March")   
+    console.log(months)
+}
+
+***********************************
+
+map()- returns a new array containing the results of calling a function on every element in this array. (Can be used instead of forEach method). It returns a new array without mutating the original array.
+DIFFERENCE BETWEEN map() AND forEach()- map returns a new array whereas forEach returns undefined. map method is chainable because you can attach reduce(), sort(), filter(), etc, after performing a map() method. This cannot be done in forEach().
+const a1= [1,4,9,16,25]
+let newA = a1.map((curElem, index, arr) => {
+    return curElem > 9
+})
+console.log(a1)
+console.log(newA)
+=======================
+
+const a1= [1,4,9,16,25]
+let newA = a1.map((curElm, index, arr) => {
+    return `index no= ${index}, value= ${curElm}, array= ${arr}`
+})
+console.log(newA)
+
+***********************************
+Que- Find the square root of each element in an Array
+const a= [25, 36, 49, 64, 81]
+let asq= a.map((currElm) => {
+    return Math.sqrt(currElm)
+})
+console.log(asq)
+***********************************
+Que- Multiply each element by 2 and return only those elements are greater than 10
+const a= [2, 4, 6, 8]
+let newa= a.map((currElm) => {
+    return currElm *2
+}).filter((currElm) =>{
+    return currElm>10
+})
+console.log(newa)
+
+***********************************
+
+reduce()-used to flatten an array i.e. to convert the 3d or 2d array into a single dimensional array.
+It executes a reducer function(that you provide) on each element of the array, resulting in single output value. It takes 4 arguments;
+Accumulator
+Current value
+Current Index
+Source Array
+It also helps to perform mathematical functions in an array.
+
+let sum = a.reduce((accumulator, currelm, index, arr) => {
+const a= [5,6,2]
+    return accumulator += currelm
+})
+console.log(sum)
+
+=======================
+
+const a =[
+    ['zone1', 'zone2'],
+    ['zone3', 'zone4'],
+    ['zone5', 'zone6'],
+    ['zone7', 'zone8'],
+]
+let flatA= a.reduce((accum, currval) => {
+    return accum.concat(currval)
+})
+console.log(flatA)
+
+----------------------------------------------------------------------------------------------
+
+STRING-
+
+length- returns length of strings
+let a = "ayan chowdhury"
+console.log(a.length)
+
+***********************************
+
+indexOf()- method returns the index of (the position of) the first occurance of a specified text in a string.
+const a ="The Dark Knight Rises"
+console.log(a.indexOf("Dark"))
+=======================
+
+const a ="The Dark Knight Rises"
+console.log(a.indexOf("h", 6))
+
+***********************************
+
+lastIndexOf()-searches in backward direction.
+const a ="The Dark Knight Rises"
+console.log(a.lastIndexOf("h", 7))
+
+***********************************
+
+search()- searched a string for a specified value and returns the position of the match
+const a ="The Dark Knight Rises"
+console.log(a.search("Dark"))
+
+***********************************
+Extracting String parts-
+there are 3 methods for extracting a part of a string:
+1.  slice(start, end)
+2.  substring(start, end)
+3.  substr(start, length)
+
+slice() - this method extracts a part of a string and returns the extracted part in a new string. This method selects the starting element but does not select the ending argument..
+The original array is not changed.
+
+var a = "Apple, Banana, Kiwi"
+let b = a.slice(0, 5);
+console.log(b)
+
+=======================
+var a = "Apple, Banana, Kiwi"
+let b = a.slice(7, -2);     //starts from the 7th index. -2 means it will remove the last two characters in the string i.e., 2nd index from the last.
+console.log(b)
+
+***********************************
+Que- Display only 280 characters of a string like the one used in Twitter?
+
+let tweets = "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt dolore enim magni ipsa dolor consequatur obcaecati aspernatur dolorum. Quo voluptas incidunt eos voluptate obcaecati cum? Animi veritatis excepturi dicta delectus explicabo ad, reiciendis esse! Odit magnam corporis numquam libero. Asperiores ipsa nobis deleniti veniam ad voluptatem, nulla repudiandae dolor, molestiae modi alias dolorum! Illo aliquam sed unde eos fugit quasi eius sunt totam, eveniet suscipit? Blanditiis fugit ipsum praesentium repudiandae maxime ex ratione, error ducimus aspernatur, exercitationem, a hic qui incidunt. Nemo, suscipit! Optio nobis accusamus eos tempore voluptates facere sunt animi illo officia fugit impedit alias ut voluptatum quas, consequatur voluptatibus. Esse asperiores doloremque iste nobis, sint reiciendis quaerat non praesentium eum, dignissimos impedit vitae tempora corrupti unde ipsam mollitia hic minima rerum consequatur. Dolores nulla vero, voluptate amet nam impedit qui, veniam sapiente quo et saepe culpa voluptatem nostrum cum soluta, officia illo atque tempora voluptates? Amet, dolores! Non ducimus, doloribus iusto voluptate, voluptatibus quod facilis ipsam totam dicta, debitis quo laudantium velit nulla quaerat magni. Laudantium veritatis omnis minima. Quidem officiis natus consequatur provident reprehenderit dolorem tempora nulla, nam harum autem eaque rem hic error omnis amet atque itaque, facilis voluptatem ratione libero aliquid quas, totam ab? Nam deserunt dicta atque dolorum earum incidunt quas unde nemo modi sequi aspernatur similique sint, aperiam, amet praesentium excepturi odio libero ea alias enim laudantium accusamus eveniet fugit. Obcaecati cumque quasi nemo in a maiores natus reprehenderit, id repellendus nobis voluptates aliquam eum expedita, nostrum dolore ea esse eligendi odit animi suscipit, et necessitatibus debitis sunt? Eum nemo laborum molestiae voluptatum dicta vero at laboriosam veritatis, perspiciatis blanditiis temporibus similique debitis suscipit fugiat eaque velit voluptate, ad hic. Rem, voluptates. Rem sint quibusdam porro ullam fuga doloremque officia consequuntur officiis molestias illum non, earum necessitatibus, laborum quia cum ipsam. Consequuntur."
+console.log(tweets.length)
+let t= tweets.slice(0, 280)
+console.log(t)
+console.log(t.length)
+***********************************
+
+substring()- Similar to slice. The difference is that it cannot accept negative indexes. If we give negative values then the characters are counted from the 0th index.
+var a = "Apple, Banana, Kiwi"
+let b = a.substring(0,4)
+console.log(b)
+
+***********************************
+
+substr()- similar to slice. The difference is that the second parameter specifies the length of the extracted part.
+
+var a = "Apple, Banana, Kiwi"
+let b = a.substr(1,4)
+console.log(b)
+let c = a.substr(7,-2)
+console.log(c)              //No output
+let d = a.substr(-4)
+console.log(d)
+
+----------------------------------------------------------------------------------------------
+
+Replacing String Content-
+replace()- This method replaces a specified value with another value in a string. 
+Points to remember-
+1.  This method does not change the string it is called on. It returns the new string.
+2.  By default, this method replaces only the first match.
+3.  it is case sensitive.
+
+let a ="My name is ayan chowdhury"
+let replaceA = a.replace('ayan', 'Ayan')
+console.log(replaceA)
+
+----------------------------------------------------------------------------------------------
+
+Replacing String Characters-
+There are 3 methods for extracting string characters:
+1.  charAt(position)
+2.  charCodeAt(position)
+3.  Property access[ ]
+
+charAt()- Returns the character at a specified index in a string.
+let a ="HELLO WORLD"
+console.log(a.charAt(0))
+
+***********************************
+charCodeAt()- Returns the unidcode of the character at a specified index in a string. It returns UTF-16 code(an integer between 0 and 65535)
+let a ="HELLO WORLD"
+console.log(a.charCodeAt(0))
+
+=======================
+Que- Return the unicode of the last character in a string.
+let a ="HELLO WORLD"
+console.log(a.charCodeAt((a.length)-1))
+
+***********************************
+Property access[ ]- ECMAScript 5 allows property acess [ ] on string.
+let a ="HELLO WORLD"
+console.log(a[4])
+
+----------------------------------------------------------------------------------------------
+Other useful methods-
+
+1.  toUpperCase() and toLowerCase()
+
+let a ="Hello World"
+console.log(a.toUpperCase())
+console.log(a.toLowerCase())
+
+2.  concat()- joins to or more strings
+
+let a ="Hello" 
+let b ="World"
+console.log(a.concat(b))
+console.log(a.concat(" ", b))
+
+3.  trim()- removes white space from both side of the string
+let a ="                Hello World             " 
+console.log(a.trim())
+
+4. Converting string to an Array- A string can be converted to an array with the split() method.
+
+let txt = "a,b,c,d,e,f,g,h"
+let txt2 = "i,j,k,l|m,n,o,p"
+console.log(txt.split(","))     //split with commas
+console.log(txt.split(" "))     //split with spaces
+console.log(txt2.split("|"))     //split with pipe
+
+----------------------------------------------------------------------------------------------
+
+Date and Time-
+JavaScript date objects represent a single moment in time in a platform independent format. Date objects contain a number that represents milliseconds since 1 January 1970.
+There are 4 ways to create date objects-
+1.  new Date()
+2.  new Date(year, month, date, hours, minutes, seconds, milliseconds)
+3.  new Date(milliseconds)
+4.  new Date(date string)
+***********************************
+
+new Date()- Date objects are created with the new Date() constructor
+
+let d = new Date()
+console.log(d)
+=======================
+
+console.log(new Date().toLocaleString())        //For exact time
+=======================
+console.log(new Date().toString())              //For exact time
+***********************************
+
+Date.now()- Returns the numeric value corresponding to the current time- the number of milliseconds elapsed since January 1, 1970 00:00:00 UTC
+console.log(Date.now())         // Output- 1623648188203
+***********************************
+
+new Date(year, month,...)- JavaScript counts months from 0 to 100. Hours should be in 24-hours format.
+console.log(new Date(2021, 5, 14, 21, 03, 30, 0).toLocaleString())
+***********************************
+
+new Date(dateString)- creates new date object from date string.
+**********************************
+
+new Date(milliseconds)- creates a new date object as zero time plus milliseconds.
+console.log(new Date(1623648188203).toLocaleDateString())
+
+----------------------------------------------------------------------------------------------
+Date methods-
+
+to get an individual date- 
+
+const d = new Date()
+console.log(d.toLocaleDateString())
+console.log(d.getFullYear())
+console.log(d.getMonth())
+console.log(d.getDate())
+console.log(d.getDay())
+**********************************
+
+to set an individual date-
+
+const d = new Date()
+console.log(d.setFullYear(2022,10,5))
+console.log(d.setMonth(10))
+console.log(d.setDate(5))
+----------------------------------------------------------------------------------------------
+
+Time Methods-
+
+to get individual time-
+
+const t = new Date()
+console.log(t.getTime())
+console.log(t.getHours())
+console.log(t.getMinutes())
+console.log(t.getSeconds())
+console.log(t.getMilliseconds())
+**********************************
+
+to set individula time-
+const t = new Date()
+console.log(t.setHours(5))
+console.log(t.setMinutes(5))
+console.log(t.setSeconds(5))
+console.log(t.setMilliseconds(5))
+**********************************
+
+console.log(new Date().toLocaleTimeString())    //only time
+console.log(new Date().toLocaleDateString())    //only date
+console.log(new Date().toLocaleString())        //both
+
+----------------------------------------------------------------------------------------------
+
+Math Objects- allows us to perform mathematical tasks on numbers.
+
+console.log(Math.PI)
+**********************************
+
+Math.round()- returns the value of x rounded to its nearest integer
+console.log(Math.round(10.59))      //Output- 11
+console.log(Math.round(10.49))      //Output-10
+**********************************
+
+Math.pow()-
+console.log(Math.pow(2,3))
+**********************************
+
+Math.sqrt()-
+console.log(Math.sqrt(25))
+**********************************
+
+Math.abs()-
+console.log(Math.abs(-25))
+**********************************
+
+Math.ceil()- returns the value of x rounded up to its nearest integer greater than it.
+console.log(Math.ceil(4.1))         //Output- 5
+console.log(Math.ceil(51.6))        //Output- 52
+**********************************
+
+Math.floor()- returns the value of x rounded up to its nearest integer smaller than it.
+console.log(Math.floor(4.1))
+console.log(Math.floor(51.6))
+**********************************
+
+Math.min()- returns the smallest number
+console.log(Math.min(4,45,78,2,9,23,6))
+**********************************
+
+Math.max()- returns the largest number
+console.log(Math.max(4,45,78,2,9,23,6))
+**********************************
+
+Math.random()- returns the random number between 0 and 1
+console.log(Math.random())
+=======================
+console.log(Math.random()*10)
+=======================
+console.log(Math.floor(Math.random()*10))  // returns a natural Number
+**********************************
+
+Math.trunc()- returns the integer part of a number.
+console.log(Math.trunc(4.6))
+console.log(Math.trunc(-66.4))
+
+----------------------------------------------------------------------------------------------
+
+DOM(Document Object Model) in JavaScript-
+
+Window vs. Document-
+1.  Window is the main constauber or we can say that global Object and any operations related to entire browser window can be a part of window object.
+Whereas the DOM is the child of window object.  
+2.   All the members like objects, methods or properties if they are the part of window then we do not refer the window object.
+Whereas in DOM we need to refer the document, if we want to use the document object, methods or properties.
+3.Window has methods, properties and object. Eg, setTimeout() or setInterval() are the methods. 
+Whereas Document is the object of the Window and it also has a screen object with properties describing the physical display. It deals with the document, the HTML elements themselves.
+
+**********************************
+
+                                                                    Window
+                                                                    / |  \
+                                                                   /  |   \  
+                                                                  /   |    \
+                                                                 /  (BOM)  (JavaScript)
+                                                                /     |      \   
+                                                            (DOM)   navigator \  
+                                                              /      screen   Object
+                                                             /      location   Array
+                                                         Document    frames   Function
+                                                          <HTML>    history       ...  
+                                                                   XML HttpRequest
+=======================
+Properties in Window Global Object-
+1.  innerHeight
+2.  innerWidth
+=======================
+history object in BOM- Functions alert/confirm/prompt are also a part of BOM: they are directly not related to the document, but they represent
+pure browser methods for communicating with the user.
+=======================
+
+Navigate through the DOM-
+1.  document.documentElement- returns the Element that is the root element of the document.
+2.  document.head
+3.  document.body
+4.  document.body.childNodes (include tab, enter and white space)
+5.  document.children
+6.  document.childNodes.length
+
+To check if document has any child nodes or not- document.hasChildNodes()
+To find the child in DOM- document.firstElementChild
+**********************************
+
+For searching the elements and the references- (see r.html folder)
+**********************************
+
+Difference between getElementById() and querySelector()-
+getElementById()- returns a reference to the element by its ID. If the element with specified Id is not in the document it will return null.
+querySelector()- returns the first element within the document that matches the specified group of selectors or null if no matches are found
+
+----------------------------------------------------------------------------------------------
+
+Events in JavaScript-
+Events are things that happen to HTML elements. When JavaScript is used in HTML pages, JavaScript can react on these pages.
+
+HTML events- an HTML event can be something a browser does or something a user does.
+JavaScript lets you execute code when events want to do something. HTML allows event handler attributes, with JavaScript code to be added to HTML elements.
+**********************************
+
+Four ways of writing events in JavaScript-
+1.  using inline events alert()
+2.  By calling the function we need
+3.  Using inline events(using elements.oneclick)
+4.  Using Events Listners(addEventListener and IE's a4myttachEvent)
+
+SEE Event_type.html for code***
+**********************************
+
+Event Object- Event object is the parent object of the event object. Eg- MouseEvent, FocusEvent, KeyboardEvent
+SEE Event.html for code***
+
+1.  MouseEvent- Events that occur when mouse interacts with the HTML document.
+SEE MouseEvent.html for code***
+
+2. KeyboardEvent- Events that occur when user presses keys on keyboard
+SEE KeyboardEvent.html for code***
+
+3. InputEvent- The onchange event when the value of an element has been changed. For radiobuttons and checkboxes, the onchnage event occurs when the checked state has been changed.
+SEE InputEvent.html for code***
+
+addEventListener does not overwrite existing event handlers, whereas oneclick overrides any existing onclick = fn event handlers.
+The other significant difference, is that onclick will alwys work, whereas addEventListenerdoes not work in Internet Explorer in version 9.
+
+----------------------------------------------------------------------------------------------
+
+Timing based events-
+The window object allows execution of code at specified time intervals. These time intervals are called timing event. 
+2 key methods used in js are-
+
+1.  setTimeout()- Executes a function, after waiting a specified number of milliseconds.
+SEE setTimeout.html for code***
+
+2.  setInterval()- Same as setTimeout(), but repeats the execution of the function continuously.
+SEE setInterval.html for code***
+
+3.  clearTimeout()-
+SEE clearTimeout.html for code***
+
+4.  clearInterval()-
+SEE setInterval.html for code***
+**********************************
+
+Difference between setTimeout and setInterval- 
+
+----------------------------------------------------------------------------------------------
+
+OOPS in JavaScript-
+
+Object Literals- It is simply a key:value pair data structure. Storing variables and functions together in one container.
+
+Ways to create:
+1st way-
+let bioData = {
+    Name:'Ayan',
+    Age:18,
+    getData:function(){
+        console.log(`Name : ${bioData.Name}, age: ${bioData.Age}`)
+    }
+}
+bioData.getData()
+
+2nd Way-
+let bioData = {
+    Name:'Ayan',
+    Age:18,
+    getData(){
+        console.log(`Name : ${bioData.Name}, age: ${bioData.Age}`)
+    }
+}
+bioData.getData()
+
+3rd Way (Object as a value inside an object)-
+let bioData = {
+    Name:{
+        firstName:'Ayan',
+        secondName:'Chowdhury'
+    },
+    Age:18,
+    getData(){
+        console.log(`Name : ${bioData.Name.firstName}, age: ${bioData.Age}`)
+    }
+}
+console.log(bioData.Name.firstName)
+
+**********************************
+
+this Object- It contains the current context. The this object can have different values depending on where it is placed.
+
+Eg1-
+console.log(this)       //it refers to the current constext(in chrome- window global object)
+=======================
+
+Eg2-
+function myName(){
+    console.log(this)
+}
+myName()                //Even here the current context will be Window not the function
+=======================
+
+Eg3-
+var n ='Ayan'
+function myName(){
+    console.log(this.n)
+}
+myName()
+=======================
+
+Eg4-
+const obj ={
+    myAge : 26,
+    myName(){
+    console.log(this)
+    }    
+}
+obj.myName();           // Here the current context is object. So if we type (this.myAge) it will return 26
+=======================
+
+Eg5-
+const obj={
+    myAge: 26, myName: ()=>{
+        console.log(this)
+    }
+}
+obj.myName()
+// If we use fat arrow function inside the object, the current context will be Window. 
+=======================
+
+Eg6-
+const bioData={
+    myName:{
+        fName: 'Ayan',
+        lName: 'Chowdhury'
+    },
+    myAge: 26,
+    getData(){
+        console.log(`First name: ${this.myName.fName}, Age: ${this.myAge} `)
+    }
+}
+bioData.getData()
+----------------------------------------------------------------------------------------------
+
+Destructuring in ES6-
+The destructuring assignment syntax is a JavaScript expression that makes it possible to unpack values from arrays, or properties from objects, into distinct variables.
+
+1.  Array Destructuring-
+
+const bioData= ['ayan', 'chowdhury', 18 ]
+
+let myFname= bioData[0]
+let myLname= bioData[1]
+let myAge= bioData[2]
+
+console.log(myAge)
+=======================
+
+// the above code can also be written as:
+const bioData= ['ayan', 'chowdhury', 18 ]
+let[f, l, a] = bioData                          // this is known as array destructuring
+console.log(f)
+let[f, l, a, degree='btech'] = bioData          //to add more elements (comment line 912 and 913)
+
+**********************************
+
+2.   Object Destructuring
+const bioData={
+    myName : 'ayan',
+    myLname: 'chowdhury',
+    myAge : 18
+}
+let age = bioData.myAge;
+console.log(age)
+=======================
+
+//the above code can also be written as: 
+const bioData={
+    myName : 'ayan',
+    myLname: 'chowdhury',
+    myAge : 18
+}
+let{myName, myLname, myAge, degree='btech'} = bioData      
+console.log(myAge)
+
+----------------------------------------------------------------------------------------------
+
+Object Properties in ES6-
+let name = "Ayan"
+const bio= {
+    [name] : 'hello',
+    18 : 'age'
+}
+console.log(bio)        //here the value of the variable name is used as a key in object bio
+=======================
+
+let name = "Ayan"
+const bio= {
+    [name] : 'hello',
+    [10+8] : 'age'
+}
+console.log(bio)
+=======================
+
+let name = "Ayan"
+let age = 18
+const bio= {
+    name : name,
+    age : age
+}
+console.log(bio)            //OUTPUT- { name: 'Ayan', age: 18 }
+
+No need to write value inside the object if the key is already used as a variable and a valued is already assigned to it.
+let name = "Ayan"
+let age = 18
+const bio= {name, age}
+console.log(bio)            //OUTPUT- { name: 'Ayan', age: 18 }
+
+----------------------------------------------------------------------------------------------
+
+Spread Operator-
+
+To add elements of one array in another
+const colors = ['red', 'green', 'blue', 'white']
+const colors2 = ['red', 'green', 'blue', 'white', 'yellow', 'black']
+
+// the above line can also be written as:
+const colors2= [ ...colors, 'yellow', 'black']
+console.log(colors2)
+
+----------------------------------------------------------------------------------------------
+ES7 Features:
+
+1.  array include
+const colors = ['red', 'green', 'blue', 'white']
+const a = colors.includes('red')
+console.log(a)
+**********************************
+
+2.  Exponential operator(**)
+console.log(2**3)       //Ouptut-8
+----------------------------------------------------------------------------------------------
+
+ES8 Features:
+
+1.  string padding
+
+let m = "Ayan".padStart(10)
+console.log(m)
+let n = "Ayan".padEnd(10)
+console.log(n)
+// run on browser
+**********************************
+
+2.  Object.values()
+
+const person= {name:'A', age:18}
+console.log(Object.values(person))      //Output- [ 'A', 18 ]
+**********************************
+
+3.  Object.entries()
+
+const person= {name:'A', age:18}
+console.log(Object.entries(person))     //Output- [ [ 'name', 'A' ], [ 'age', 18 ] ]  
+----------------------------------------------------------------------------------------------
+
+ES9-
+1.  Rest property for objects
+
+const p1 = {name: "A", age:18}
+const p2 = {...p1, height: 180}
+console.log(p1)
+console.log(p2)
+----------------------------------------------------------------------------------------------
+
+ES2019-
+
+1.  Flatten an array-
+const a =[
+    ['zone1', 'zone2'],
+    ['zone3', 'zone4'],
+    ['zone5', 'zone6'],
+    ['zone7', ['zone8', 'zone9']],
+]
+console.log(a.flat())       //by default it flattens upto 1 level
+=======================
+
+const a =[
+    ['zone1', 'zone2'],
+    ['zone3', 'zone4'],
+    ['zone5', 'zone6'],
+    ['zone7', ['zone8', 'zone9']],
+]
+console.log(a.flat(2))          //instead of 2 we can also type 'Infinity' if we don't know the number of levels
+**********************************
+
+2.  Converting back to object from array.
+
+const person= {name:'A', age:18}
+const a = Object.entries(person)        // object to array
+console.log(Object.fromEntries(a))      //array to object
+----------------------------------------------------------------------------------------------
+
+ES2020-
+
+1.  BigInt
+
+let oldnum = Number.MAX_SAFE_INTEGER
+console.log(oldnum)
+console.log(oldnum+12)      //Wrong calculation
+
+console.log(9007199254740991n + 12n)
+newNum=9007199254740991n + 12n
+console.log(typeof newNum)          
+**********************************
+
+2. # Nullish Coalescing
+
+----------------------------------------------------------------------------------------------
+
+ES2014-
+i.   use strict
+in JavaScript we can use print a value stored in a variable without defining it, but in use strict mode it does not allow us to do so. 
+
+"use strict"
+x = 3.14
+console.log(x)
+
+----------------------------------------------------------------------------------------------
+
+Advance JavaScript Pt.1-
+
+1. Event Propagation- This mode determines in which order the elements recieve the event.
+Event bubbling and capturing are two ways of event propagation in HTML, DOM, API when an event occurs in an element inside another element and both elements have registered a handle to that event.
+
+Propagation is broadly categorized into 3 main types-
+a.  The capture phase: Going from the window to the event target phase.
+b.  The target phase: It is the target phase
+c.  The bubble phase: From the event target parent back to the window.
+
+Event Bubbling- With this, the event is first captured and handled by the innermost element and then propagated to outer elements.(By default)
+Event Capturing- With this, the event is first captured by the outermost elements and propagated to the inner elements. Capturing is also called 'trickling' which helps remember the propagation order.
+
+SEE propagation.html for code***
+**********************************
+
+2.  Higher Order Function- Function which takes another function as an arguments is called HOF
+
+3.  Callback Function- function which get passes as another function is called CBF. A callback function is a function that is passed as an argument to another function, to be called back at a later time.
+
+const add= (a,b) =>{
+    return a+b
+}
+
+const sub= (a,b) =>{
+    return a-b
+}
+
+const multi= (a,b) =>{
+    return a*b
+}
+
+const div= (a,b) =>{
+    return a/b
+}
+
+const cal = (n1, n2, op) =>{
+    return op(n1,n2)
+}
+console.log(cal(5,2,multi))
+
+In the above code, the function "cal" is higher order fucntion because this function is accepting other functions as an argument.
+The functions "add", "sub", "multi", "div" are callback functions because these function are passed in other functions as an argument.
+
+----------------------------------------------------------------------------------------------
+
+Asynchronous JavaScript-
+
+Hoisting in JavaScript- it is a mechanism where variables and functions declarations are moved to the top of their scope before the code executes.
+
+console.log(n)
+var n
+n = 'a'         //Output-undefined
+
+Output during creation phase-
+1: var n= undefined
+2: console.log(n)
+3: n = 'a'
+//if we use let or const, it will show error
+
+Hoisting is avoided by using the let keyword instead of var.(the other difference is that variables are declared with let are local to the surrounding block, not the entire function.)
+
+Scope Chain- It is used to resolve the value of variable names in JS. In js, it is lexically defined, i.e., we can see what the scope chain will be by looking at the code.
+At the top, we have the Global Scope, which is the window Object in the browser.
+
+Lexical Scope- The inner function can get access to their parent functions variables but the vice versa is not true.
+
+let a ="Hello"
+const f=() =>{
+    let b = " Hey"
+    const f2 =() =>{
+        let c = " Hi"
+        console.log(a+b+c)
+    }
+    f2()
+}
+f()
+
+**********************************
+
+Closure in js-
+A closure is the combination of a function bundled together (enclosed) with references to its surrounding state (the lexical enviornment).
+It gives access to an outer function's scope from an inner function. These are created every time a function is created, at function creation time.
+
+const o = (a) =>{
+    let b = 10
+    const i = () => {
+        let s = a+b
+        console.log(s)
+    }
+    i()
+}
+o(5)
+=======================
+
+const o = (a) =>{
+    let b = 10
+    const i = () => {
+        let s = a+b
+        console.log(s)
+    }
+    return i;
+}
+let c = o(5)
+c()
+console.dir(c)          //run on console
+
+**********************************
+
+Difference between Synchronous and Asynchornous js-
+
+Synchronous js- If we are performing two tasks at the same time, then the second task will be executed until and unless the first task is not completed.
+
+const f2 = () =>{
+    console.log('function2')
+}
+
+const f1 = () => {
+    console.log('function1')
+    f2()
+    console.log('function1 again')
+}
+f1()
+
+Asynchornous js- Here all the tasks are performed together in parallel
+
+const f2 = () =>{
+    setTimeout(() =>{
+        console.log('function2')
+    }, 2000)
+}
+
+const f1 = () => {
+    console.log('function1')
+    f2()
+    console.log('function1 again')
+}
+f1()
+
+**********************************
+
+#Event Loop-
+**********************************
+
+Function Currying- Currying is a technique with multiple arguments, into sequence of function with single argument.
+In other words, when a function , instead of taking all the arguments at one time, takes the first one and return a new function that 
+takes the second one and returns a new function which takes the third one, and so forth, until all arguments have been fullfilled.
+
+function sum(n1) {
+    // console.log(n1)
+    return function(n2){
+        // console.log(n1,n2)
+        return function(n3){
+            console.log(n1+n2+n3)
+        }
+    }
+}
+sum(5)(3)(8)
+=======================
+
+const sum = (n1) => (n2) => (n3)=> console.log(n1+n2+n3) 
+sum(5)(3)(8)
+
+**********************************
+
+CallBack Hell-
+
+setTimeout(() =>{
+    console.log('1')
+    setTimeout(()=>{
+        console.log('2')
+        setTimeout(()=>{
+            console.log('3')
+            setTimeout(()=>{
+                console.log('4')
+                setTimeout(()=>{
+                    console.log('5')
+                },1000 )
+            },1000)
+        },1000)
+    },1000)
+},1000)
+
+**********************************
+
+XMLHttpRequest (XHR)- These are objects that are used to interact with servers. We can retireve data from a URL without having to do a
+full page refresh. This enables the web page to update just part of a page without disrupting what the user is doing. XMLHttpRequest is 
+used heavily in AJAX programming.
+Ajax (Asynchornous JavaScript And XML), is a programming practice of building complex, dynamic webpages using a technology known as XMLHttpRequest.
+
+**********************************
+
+JSON- 
+
+var myObject= {key1:"a", key2:true, key3:5}
+var object_as_string = JSON.stringify(myObject)     //object to string
+
+console.log(object_as_string)
+console.log(typeof(object_as_string))
+
+var object_as_string_as_object = JSON.parse(object_as_string)           //string to object
+console.log(object_as_string_as_object)
+console.log(typeof(object_as_string_as_object))
+
+
+----------------------------------------------------------------------------------------------
+
+localStorage and sessionStorage-
+
+These properties allow to save key/value pairs in a web browser. The localStorage object stores data with no expiration date. 
+The data will not be deleted when the browser is closed, and will be available anytime.

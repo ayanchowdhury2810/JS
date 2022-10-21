@@ -1,0 +1,12 @@
+<script>
+
+    async function getCovidapi(){           //async keyword is added to function to tell them to return a promise rather than directly returning the value
+        const jsonData = await fetch('https://api.covid19api.com/summary')
+
+        const jsData = await jsonData.json()
+        console.log(jsData.Countries[76].Country)
+    }
+
+    getCovidapi()
+
+</script>

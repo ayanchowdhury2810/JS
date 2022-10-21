@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <p id="btn">Click Me</p>
+
+    <div class="box">
+        <h1 align="center">Login Form</h1>
+        <form role="form" method="post">
+
+            <div class="inputBox">
+                <input type="text" name="username" autocomplete="off" required>
+                <label>Username</label>
+            </div>
+            <div class="inputBox">
+                <input type="password" name="password" autocomplete="off" required>
+                <label>Password</label>
+            </div>
+
+            <input type="submit" name="login" value="login">
+        </form>
+        
+    </div>
+
+    <script>
+//Synnchronous Method
+ //       const wait = () =>{
+   //         console.log("Starting")
+//
+  //          let start = new Date().getTime()    
+//
+  //          console.log(new Date().getTime()- start)
+//
+   //         while(new Date().getTime() - start < 5000){}
+  //          console.log("Done")
+    //    }
+
+//Asynnchronous Method
+
+const wait = () =>{
+    console.log("Start")
+    setTimeout(() => {
+        console.log('done')
+    },5000)
+}
+
+        btn.addEventListener('click', wait)
+
+
+    </script>
+</body>
+</html>

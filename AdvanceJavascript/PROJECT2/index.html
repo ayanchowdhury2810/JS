@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@1,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arvo&display=swap" rel="stylesheet">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <h1>Rate your favourite picture</h1>
+    <br>
+    <div class="star-rating">
+        <img src="http://picsum.photos/400/300/?random">
+
+        <ul class="stars">
+            <li class="star"><i class="fas fa-star"></i></li>
+            <li class="star"><i class="fas fa-star"></i></li>
+            <li class="star"><i class="fas fa-star"></i></li>
+            <li class="star"><i class="fas fa-star"></i></li>
+            <li class="star"><i class="fas fa-star"></i></li>
+        </ul>
+        
+        <p class="output"> Ratings </p>
+        <br>
+        <button class="next" onclick="nextPage()"> NEXT </button>
+    </div>
+
+    <script>
+
+        const stars = document.querySelectorAll('.star')
+        const output = document.querySelector('.output')
+
+        for(x = 0; x<stars.length; x++){
+            stars[x].starValue = (x+1)
+            //stars[i].addEventListener('click', function(){
+            //    console.log("clicked")
+            //})
+
+           let m = ["click", "mouseover", "mouseout"].forEach(function(e){
+                stars[x].addEventListener(e, showRating)
+            })
+        }
+
+        function showRating(e){
+
+            let type= e.type
+            //console.log(type)
+            let starValue = this.starValue
+            //console.log(starValue)
+
+            if(type === 'click'){ 
+                if(starValue > 1){
+                    output.innerHTML = "You rated this " + starValue + " stars"
+                }
+            }
+
+            stars.forEach(function(elem, ind){
+                if(type === 'click'){ 
+                    if(ind < starValue){
+                        elem.classList.add('orange')
+                    }else{
+                        elem.classList.remove('orange') 
+                    }
+                }
+
+                if(type === 'mouseover'){ 
+                    if(ind < starValue){
+                        elem.classList.add('yellow')
+                    }else{
+                        elem.classList.remove('yellow') 
+                    }
+                }
+
+                if(type === 'mouseout'){ 
+                        elem.classList.remove('yellow')
+                }
+            })
+        }
+
+        function nextPage(){
+            window.location.reload()
+        }
+
+    </script>
+</body>
+
+</html>

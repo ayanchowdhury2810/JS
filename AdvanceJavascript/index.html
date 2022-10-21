@@ -1,0 +1,44 @@
+<!-- <p id="apiIndia"> </p>
+
+<script>
+
+    fetch('https://api.covid19api.com/summary').then((apidata) =>{
+        //console.log(apidata)
+        return apidata.json()
+    }).then( (actualData) =>{
+        console.log(actualData)                                 //to get all the data
+        console.log(actualData.Countries[76])                   //to get data of a particular country
+        console.log(actualData.Countries[76].Country)           //to get the name of the country
+        const myData = actualData.Countries[76]
+        document.getElementById('apiIndia').innerHTML = `Country: ${myData.Country}, New cases: ${myData.NewConfirmed}, Deaths: ${myData.NewDeaths}, Recovered: ${myData.NewRecovered}`    //to make the country name visible on browser
+    }).catch((error)=>{
+        console.log(`ERROR :D ${error}`)
+    }) 
+
+</script>-->
+
+    <script>
+
+        async function getCovidapi(indexapi){           //async keyword is added to function to tell them to return a promise rather than directly returning the value
+            try{
+            const jsonData = await fetch('https://api.covid19api.com/summary')
+    
+            const jsData = await jsonData.json()
+            //console.log(jsData)
+            const country_name = jsData.Countries[`${indexapi}`]
+            console.log(`country: ${country_name.Country}`)
+    
+            }catch(error){
+                console.log(`ERROR :D ${error}`)
+            }
+        }
+    
+        getCovidapi(76)
+        getCovidapi(176)
+        getCovidapi(36)
+        getCovidapi(56)
+        getCovidapi(70)
+    
+    </script>
+
+

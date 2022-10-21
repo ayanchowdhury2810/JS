@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title> -->
+</head>
+
+<body>
+    <p>Click button to display a date after changing the hours</p>
+
+    <button onclick="MyFunction()">Click here</button>
+    <div>
+        <p id = "fc">First Child</p>
+        <p class = "c1">Second Child</p>
+        <p class = "c1">Third Child</p>
+        <p class="c2">Fourth child</p>
+        <p class="c2">Fifth child</p>
+    </div>
+    
+    <form>
+        <label>male</label>
+        <input type="radio" name="gender">
+        <label>female</label>
+        <input type="radio" name="gender">
+        <label>Prefer not to say</label>
+        <input type="radio" name="gender">
+    </form>
+
+    <p id="demo"></p>
+    <script>
+        function MyFunction() {
+            var t = new Date();
+            t.setHours(5);
+            document.getElementById("demo").innerHTML = t;
+            document.getElementById('fc').innerHTML="Hello"         //to edit text
+            console.log(document.getElementsByClassName('c1'))      //to search elements by class name
+            console.log(document.getElementsByTagName('p'))         // to search elements by tag
+            console.log(document.getElementsByName('gender'))       //to search elements by name
+            document.querySelector('.c2').innerHTML="Hello Again"   // another way to edit text(it finds the first matching element and changes it)
+//            console.log(document.querySelector('div.p.c2').innerHTML)
+            console.log(document.querySelectorAll('.c2'))            //tells the number of elements have the same class name
+
+        }
+        
+    </script>
+</body>
+
+</html>

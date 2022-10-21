@@ -1,0 +1,1195 @@
+Every browser has a JS Engine to run JS. Chrome- V8 engine(also used to create node js), mozilla- spider monkey, etc.
+
+1.  Every engine has a parser which parse the js code i.e., it checks the code line by line.
+2.  After checking the code, if the code is correct it produce a data structure called abstract syntax tree(It is a way to represent how the code is working).
+3.  After this, through AST, it converts our code to Machine Code.
+4.  After this, the file recieved is understood by the system and then it runs the code.
+
+-----------------------------------------------------------------
+Execution Context-
+The enviornment in which our code is executed and is evaluated. 
+
+Global Execution Context(default) - 
+JS engine creates the global execution context before it starts to execute any code.
+Variables, and functions that are not inside any function are in Global Execution Context. 
+A new execution context gets created every time a function is executed.
+
+Before calling a function, it will remain in the global execution context. After the functions are called, every function will get its own execution context.
+
+The global execution context is just like any other execution context, except that it gets created by default. It is associated with Global Object. Which also means window object.
+Eg:- this == window, name == window.name
+
+-----------------------------------------------------------------
+Execution Stack-
+It is also known as 'calling stack' is a stack with a LIFO structure, which is used to store all the execution context created during the code execution.
+
+-----------------------------------------------------------------
+
+Execution Context Object-
+It has 3 properties-
+1.  Variable Object
+2.  Scope chain
+3.  'this' variable
+
+It involves 2 phase:
+1.  Creation phase
+    a.  Variable objects are created
+    b.  Scope are created
+    c.  'this' variable (which lexical enviornment it is pointing to)
+
+2.  Execution phase
+    a.  Run code in current execution context line by line
+
+***************************************
+Variable Object- 
+For each function (function declaration) a property is created in the variable Object. Which is pointing to that function
+For each function (function declaration) a property is created in the variable Object. Which is then set to undefined.
+Argument Objects are created that were passed into the function.
+
+Line 40 and 41 is called hoisitng in JS. It is a JS mechanism where variables and functions are moved to their scope before the code execution.
+
+***************************************
+Function Hoisting-
+
+***************************************
+Variable Hoisting-
+All the variables in the code are moved to the top before the execution of the code. Works only on var keyword.
+
+Hoisting works only in case of function but in case of variable it returns undefined.
+-----------------------------------------------------------------
+
+Scope Chain-
+The scope chain is used to resolve the value of variable name in JS.
+Scope chain in JS is lexically defined, which means that we can see what the scope chain will be by looking at the code.
+At the top of the scope chain is the global scope, which is the window object in the browser.
+Lexical scoping is a function that is lexically within another function get access to the scope of the outer function.(Inner function can get access of their parent functions variables but the vice-versa is not true.)
+
+var a = 'hello '
+
+function f(){
+    var b = 'how '
+    s()
+
+    function s(){
+        var c = 'Myself '
+        console.log(a+b+c)
+        t()
+    }
+}
+function t(){The
+    var d ="j "
+    console.log(a+b+c+d)
+}
+f()
+-----------------------------------------------------------------
+
+use strict-
+The statement 'use strict', instructs the browser to use the Strict mode, which is a reduced and safer feature set of JS.
+
+"use strict"
+
+sum(10,10)
+
+function sum(a,b){
+    add= a+b
+    console.log(add)
+}                               //ERROR- add is not defined]
+-----------------------------------------------------------------
+
+"this" keyword in JS-
+
+It refers to the object it belongs to. It has different values depending where it is used.
+1.  Alone, this refers to the global object.
+
+console.log(this)
+******************
+
+2.  In a regular function, this refers to the global object.
+
+function sum(){
+    var add = 2+2
+    console.log("sum= "+ add)
+    console.log(this)
+}
+sum()
+******************
+
+3.  In a method, this refers to the owner object.
+
+const t = {
+    name:"Ayan Chowdhury",
+    qualf:"B.tech",
+    sum: function(){
+        var add = 2+2
+        console.log("sum= "+ add)
+        console.log(this.name)
+        console.log(this)
+    }
+}
+t.sum()
+******************
+
+4.  In a function, in strict mode, this is undefined.
+
+"use strict"
+
+function sum(){
+    var add = 2+2
+    console.log("sum= "+ add)
+    console.log(this)
+}
+sum()
+
+-----------------------------------------------------------------
+Types in JS-
+1.  Number  ---------|
+2.  String           |
+3.  Boolean          |
+4.  Undefined        |-------> Primitive Datatype
+5.  Null             |
+6.  Symbol  ---------|
+7.  Object -> Non-Primitive Datatype
+***************************************
+
+Proof- Array is an Object
+const array = [1,2,3]
+console.log(array)
+const arrayObj = {
+    0:1,
+    1:2,
+    3:2
+}
+console.log(arrayObj)           //run on browser
+******************
+
+isArray()- This method determines whether an object is an array. This function returns true if the object is an array, and false if not.
+
+const array = [1,2,3]
+console.log(array)
+const arrayObj = {
+    0:1,
+    1:2,
+    3:2
+}
+console.log(Array.isArray(arrayObj))
+console.log(Array.isArray(array))
+-----------------------------------------------------------------
+
+Pass by value and Pass by reference
+
+Pass by value- In primitive data type
+
+let a = 5
+let b = a
+console.log(a)
+console.log(b)
+
+***************************************
+Pass by reference- In non-primitive data type
+
+const obj1 = {
+    username : 'ayan',
+    pass : 'password'
+}
+
+const obj2 = obj1
+
+console.log(obj1)
+console.log(obj2)
+
+obj2.pass = "jnvfsvnj"
+console.log(obj1)
+console.log(obj2)       //changes value of pass in both obj1 and obj2
+******************
+
+const arr1 = [1,2,3,4,5]
+const arr2 = arr1
+
+console.log(arr1)
+console.log(arr2)
+
+arr2.push(90)
+console.log(arr1)
+console.log(arr2)           //adds an element in both arr1 and arr2
+
+To prevent arr1 from changing-
+const arr1 = [1,2,3,4,5]
+const arr2 = [].concat(arr1)
+
+console.log(arr1)
+console.log(arr2)
+
+arr2.push(90)
+console.log(arr1)
+console.log(arr2)
+
+-----------------------------------------------------------------
+
+Functions is First Class Citizens-
+
+A programming language is said to have First-class functions when functions in that language are treated lika any other variable.
+
+1.  In JS we can assign a function to a variable.
+
+const t = function(){
+    console.log("Hello")
+}
+t()
+******************
+
+const t = function(){
+    console.log("Hello")
+}
+t()
+***************************************
+
+2.  Pass a function as an Argument
+
+const n = () => {
+    return "Hello "
+}
+
+const g = (hi, name) =>{
+    console.log(hi()+name)
+}
+
+g(n,"Ayan")
+
+The function that we pass as an argument to another function is called a Callback function. Here, n is a Callback function.
+
+***************************************
+
+3.   Returning function
+function a(){
+    return function b(){
+        console.log("hello")
+    }
+}
+
+//Ways of calling b
+// 1.
+a()()
+
+// 2.
+const c = a()
+c()
+-----------------------------------------------------------------
+
+Callback Function-
+Any function that is passed as an argument is called a Callback function.
+A Callback is a function that is to be executed after a another function has finished executing, hence the name 'call back'.
+
+Reason for using it-
+JS is an event driven language. This means that instead of waiting for a response before moving on, JS will keep executing while listening for other events.
+Callbacks are a way to make sure that certain code doesn't execute until other code has already finished execution.
+
+const p1 = (f) =>{
+    console.log(`${f}`)
+    p2()
+}
+
+const p2 = ( ) => {
+    console.log(`Hi`)
+}
+
+p1('Hello', p2)
+
+-----------------------------------------------------------------
+
+Anonymous Function- 
+A function without a name.
+
+<script>
+    document.addEventListener('click', function (){
+        console.log("Hi")
+    })
+
+        let sum = function (a,b){
+        let add = a+b
+        console.log(add)
+    }
+
+    sum(6,6)
+</script>
+-----------------------------------------------------------------
+
+Higher Order Function-
+Functions that take other functions as arguments or return functions as their results.
+
+const que = (name) =>{
+    if(name=='A'){
+        return function(topic){
+            console.log(`Hi ${name}. What is ${topic}.`)
+        }
+    }else if(name=='B'){
+        return function(topic){
+            console.log(`Hi ${name}. What is ${topic}.`)
+        }
+    }else if(name=='C'){
+        return function(topic){
+            console.log(`Hi ${name}. What is ${topic}.`)
+        }
+    }else{
+        return function(){
+            console.log('Welcome')
+        }
+    }
+}
+
+que('A')('Web')
+que('B')('CSS')
+que('C')('Frontend')
+que('D')('Backend')
+
+const q = que('A')
+q('WWW')
+q('flexbox')
+q('JS')
+-----------------------------------------------------------------
+
+Immediately Invoked Function Expression-
+An IIFE is a JS function that runs as soon as it is defined. 
+It is a design pattern which is also known as a Self-Executng Anonymous Function and contains two major parts.
+The first is the anonymous function with lexical scope enclosed within the Grouping Operator(). This prevents accessing variables within the IIFE idiom as well as polluting the global scope.
+The second part creates the immediately invoked function expression() through which the JS engine will directly interpret the function.
+
+Instead of this-
+function a(){
+    console.log('A')
+}
+a()
+
+We can type this-
+(function() {
+    console.log('Hi')
+})()
+
+-----------------------------------------------------------------
+
+Closure-
+Closure in action that is inner function can have access to the outer function as well as the global variables.
+It is the combination of a function and the lexical enviornment within which that function was declared.
+
+const f1 = (a) =>{
+    let b = 10
+    const f2 = () =>{
+        let sum = a + b
+        console.log(`sum is ${sum}`)
+    }
+    f2()
+}
+f1(5)
+******************
+
+<script>
+    const f1 = (a) =>{
+        let b = 10
+        const f2 = () =>{
+            let sum = a + b
+            console.log(`sum is ${sum}`)
+        }
+        return f2
+    }
+    let f = f1(5)
+    console.dir(f)
+    f()
+</script>
+***************************************
+
+Exercise using Closure-
+
+const que = (name) =>{
+    return function(topic){
+        if(name==='A'){
+            console.log(`Hi ${name}. What is ${topic}.`)
+        }else if(name==='B'){
+                console.log(`Hi ${name}. What is ${topic}.`)
+        }else if(name==='B'){
+                console.log(`Hi ${name}. What is ${topic}.`)
+        }else{
+            console.log('Welcome')
+        }
+    }
+}
+
+const candidate1 = que('A')
+candidate1('UI')
+
+const candidate2 = que('B')('Class')
+-----------------------------------------------------------------
+
+call() Method-
+It is pre-defined JS method.
+With this, an object can use a method belonging to another object.
+
+const y1 = {
+    name: "A",
+    content: "a",
+    features: function(rating, support){
+        console.log(`${this.name} ${this.content} ${rating} ${support}`)
+    }
+}
+
+const y2 = {
+    name: "B",
+    content: "b",
+}
+
+y1.features(6, "Hi")
+y1.features.call(y2,8,"Hello")
+
+-----------------------------------------------------------------
+
+apply() method-
+It is similar to call method.
+Difference is that call() method takes arguments separately and apply() method takes arguments as an array.
+
+const y1 = {
+    name: "A",
+    content: "a",
+    features: function(rating, support){
+        console.log(`${this.name} ${this.content} ${rating} ${support}`)
+    }
+}
+
+const y2 = {
+    name: "B",
+    content: "b",
+}
+
+y1.features(6, "Hi")
+y1.features.apply(y2,[8,"Hello"])
+
+******************
+let m = Math.max.apply(null, [1,2,3,4,5,6])
+console.log(m)
+
+-----------------------------------------------------------------
+
+bind() method-
+By this method, we can bind an object to a common function, so that the function gives different result when its needed.
+
+const y1 = {
+    name: "A",
+    content: "a",
+    features: function(){
+        console.log(`${this.name} ${this.content}`)
+    }
+}
+
+y1.features()
+
+let y2 = y1.features.bind(y1)
+y2()
+// bind() method takes an object as an first argument and creates a new function.
+
+******************
+const y1 = {
+    name: "A",
+    content: "a",
+}
+const y2 = {
+    name: "B",
+    content: "b",
+}
+const y3 = {
+    name: "C",
+    content: "c",
+}
+function features(ratings){
+    console.log(`${this.name} ${this.content} ${ratings}`)
+}
+
+let a = features.bind(y1)
+let b = features.bind(y2)
+let c = features.bind(y3)
+a(2)
+b(3)
+c(4)
+
+******************
+
+forEach() loop-
+This method calls a function once for each element in an array in order.
+Syntax- arr.forEach(callback(currentValue[, index[, array]])[, thisArg])
+
+currentValue: (Required) The value of the current element.
+index: (Optional) The array index of the current element.
+arr: (Optional) The array object the current element belongs to
+
+const a = ['JS', 'Python', 'PHP', 'C', 'Java', 'C++']
+
+a.forEach(function(currVal){
+    console.log(currVal)
+})
+
+a.forEach(function(currVal, ind){
+    console.log(ind + " " + currVal)
+})
+
+******************
+
+Que-    Create one array. For each element in the array, add the value 100 to ecah items and update the element value.
+const a = [10,20,30,40,50]
+
+a.forEach(function(val, ind, arr){
+    console.log(arr[ind]+100)
+})
+-----------------------------------------------------------------
+
+For of loop-
+It loops through the values of an iterable objects.
+
+const a = ['JS', 'Python', 'PHP', 'C', 'Java', 'C++']
+
+for(i of a){
+    console.log(i)
+}
+
+-----------------------------------------------------------------
+
+For in loop-
+Allow us to loop through the properties of an object.
+
+const a = {
+    name: 'Ayan',
+    age: 18,
+    degree: 'B.Tech'
+}
+
+for(i in a){
+    console.log(i)
+}
+
+-----------------------------------------------------------------
+
+ECMASCRIPT 2015
+
+1.  Let and const
+var: function Scope
+let and const: block scope
+
+***************************************
+
+2.  Template Literals
+***************************************
+
+3.  String methods
+
+let a = "Ayan"
+console.log(`${a}`.startsWith('A'))             //returns boolean value (case sensitive)
+console.log(`${a}`.endsWith('n'))               //returns boolean value (case sensitive)
+console.log(`${a}`.includes('ya'))              //checks whether the part of string is present in the original string or not
+console.log(`${a} `.repeat(10))                 //for printing a string many times
+***************************************
+
+4.  Array destructuring
+let a = 5
+let b = 15;
+
+[a,b] = [c,d]
+console.log(` a: ${a},  b: ${b}`)
+***************************************
+
+5.  Object destructuring
+Destructuring syntax in JS expression makes it possible to unpack values from arrays, or properties from objects, into distinct variables.
+
+const b = {
+    name: 'Ayan',
+    age: 18,
+    deg: 'B.tech',
+    sports: {
+        first: 'football',
+        second: 'cricket',
+        third: 'volleyball'
+    }
+}
+let{name:n, age, deg,sports} = b
+console.log(`${sports.second}`)
+
+***************************************
+
+6.  Fat arrow function
+***************************************
+
+7.  Default Parameters
+Default function parameters allow names parameters to be initialized with default values if no value or undefined is passed.
+
+const f = (a,b=8) => {
+    console.log(a*b)
+}
+f(4)
+***************************************
+
+8.  Rest Parameter
+It is an improved way to handle function parameter, allowing us to more easily handle varius input as parameter in a function.
+The rest parameter syntax allows us to represent an indefinite number of arguments as an array.
+
+const s = (...i) =>{
+    // console.log(...i)
+    let t=0
+    for(let b of i){
+        t+=b
+    }
+    console.log(t)
+}
+s(2,3,4,5)
+***************************************
+
+9.  Spread operator
+It allows an iterable to expand in places where 0+ arguments are expected. It is mostly used in variable array where more than 1 values 
+are expected. It allows us the privilege to obtain a list of parameters from an array. Syntax of spread operator is same as rest parameter 
+but it works completely opposite of it.
+
+USE 1:
+
+const s = (a,b,c) =>{
+    console.log(a+b+c)
+}
+
+var arr = [1,2,3]
+s.apply(null, arr)
+
+Above code can also be written as:
+
+const s = (a,b,c) =>{
+    console.log(a+b+c)
+}
+
+var arr = [1,2,3]
+s(...arr)
+******************
+
+USE 2:
+
+let a = [4,5,6]
+let b = [8,9,1]
+a = [...a,...b]
+console.log(a)
+******************
+
+USE 3:
+
+let a = [4,5,6]
+let b = a
+b.push(8,3)
+console.log(b)      //elements are added to array b but changes are automatically made in the original array also.
+console.log(a)
+
+Above code can also be written as:
+
+let a = [4,5,6]
+let b = [...a,8,3]              // by this no changes are made in the original array 
+console.log(b)              
+console.log(a)
+
+***************************************
+
+10. Math Object
+
+sign() method -
+
+let p =5.55
+let n =-5.55
+let z = 0
+let x = NaN
+let a = "A"
+console.log(Math.sign(p))               //1 for positive number
+console.log(Math.sign(n))               //-1 for negative number
+console.log(Math.sign(z))               //0
+console.log(Math.sign(x))               //NaN
+console.log(Math.sign(a))               //NaN
+
+
+trunc() Method -
+Neglects the digits after decimal
+
+let p =5.65
+let n =-5.65
+console.log(Math.trunc(p))              //5
+console.log(Math.trunc(n))              //-5
+***************************************
+
+11. Exponentiation operator (**)
+
+It raises the first operand to the power of the second operand.
+
+x**y produces same result as Math.pow(x,y)
+
+***************************************
+
+12. Number and Global methods
+
+isFinite() method-  The global isFinite() method returns true if the argument is Infinity or NaN
+
+isNaN() method-  The isNaN() method returns true if the argument is NaN. Otherwise it returns false.
+
+Number.isInteger() method-  This method returns true if the argument is an intger.
+
+-----------------------------------------------------------------
+
+Classes, Object and Inheritance-
+
+When the object of a class is created, the constructor method of the class is also called on its own.
+
+class s{
+    constructor(name, age, deg){
+        this.myName = name
+        this.myAge = age
+        this.myDeg = deg
+    }
+    b(){                                        //instance method
+        return(`class method, ${this.myName}, ${this.myAge}, ${this.myDeg}`)
+    }
+
+    static i(){                                 //static method (Other classes cannot access or inherit this method)
+        console.log('static method')
+    }
+}
+
+class Player extends s{
+    constructor(name,age,cls,game){
+        super(name,age,cls)
+        this.myGame = game
+    }
+
+    d(){
+        return(`${super.b()}, ${this.myGame}`)
+    }
+}
+
+let obj1 = new s('A', 18, 'B.tech')                 //object
+let obj2 = new s('B', 19, 'BCA')
+let obj3 = new Player('C', 20, 'M.tech','Football')
+
+obj1.b()                                           //calling method
+obj2.b()
+console.log(obj3.d())
+
+//to print obj1 and obj2, either replace return with console.log or write obj1.b() inside console.log
+
+-----------------------------------------------------------------
+
+Difference between synchronous and asynchronous-
+
+Synchronous-  A synchronous block request blocks the client until operation completes i.e., browser is unresponsive. In such case, JS engine
+of the browser is blocked.
+
+const f2 = () =>{
+    console.log('function2')
+}
+
+const f1 = () =>{
+    console.log('function1 start')
+    f2()
+    console.log('function1 end')
+}
+
+f1()
+***************************************
+
+Asynchronous (AJAX Web Apllication Model)-  An asynchronous rquest doesn't block the client i.e., browser is responsive. At that time, user
+can perform another operations also. In such case, JS engine of the browser is not blocked.
+
+const f2 = () =>{
+    setTimeout( () => {
+        console.log('function2')
+    },3000)
+}
+
+const f1 = () =>{
+    console.log('function1 start')
+    f2()
+    console.log('function1 end')
+}
+
+f1()
+
+***************************************
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <p id="btn">Click Me</p>
+
+    <div class="box">
+        <h1 align="center">Login Form</h1>
+        <form role="form" method="post">
+
+            <div class="inputBox">
+                <input type="text" name="username" autocomplete="off" required>
+                <label>Username</label>
+            </div>
+            <div class="inputBox">
+                <input type="password" name="password" autocomplete="off" required>
+                <label>Password</label>
+            </div>
+
+            <input type="submit" name="login" value="login">
+        </form>
+        
+    </div>
+
+    <script>
+//Synnchronous Method
+ //       const wait = () =>{
+   //         console.log("Starting")
+//
+  //          let start = new Date().getTime()    
+//
+  //          console.log(new Date().getTime()- start)
+//
+   //         while(new Date().getTime() - start < 5000){}
+  //          console.log("Done")
+    //    }
+
+//Asynnchronous Method
+
+const wait = () =>{
+    console.log("Start")
+    setTimeout(() => {
+        console.log('done')
+    },5000)
+}
+
+        btn.addEventListener('click', wait)
+
+
+    </script>
+</body>
+</html>
+-----------------------------------------------------------------
+
+Callback Hell-
+
+const gr = () =>{
+    setTimeout(() =>{
+        console.log('info recieved')
+        let rollno = [1,2,3,4,5]
+        console.log(rollno)
+        setTimeout((rollno) => {
+            const b = {
+                name: 'A',
+                age: 18
+            }
+            console.log(`rollno: ${rollno}, name: ${b.name}, age: ${b.age}`)
+            setTimeout((name) =>{
+                b.gender= 'M'
+                console.log(`rollno: ${rollno}, name: ${b.name}, age: ${b.age}, gender: ${b.gender}`)
+            },2000, b.name)
+        },2000,rollno[1])
+    },2000)
+}
+
+gr()
+
+-----------------------------------------------------------------
+
+Promises-
+Used to handle asynchronous operations in JS. They are easy to manage when dealing with multiple asynchronous operations where callbacks
+can create callback hell leading to unmanageable code.
+It is an object in JS that keeps track about whether a certain event has happend already or not.
+Determines what happens after the event happens.
+
+Whenever we create an object of a promise using new keyword, we have to execute a function (executor function). In this executer function 
+we have to pass two arguments- resolve and reject. resolve is used if the promise is completed and if the promise is failed then reject
+is used.
+Whenever promise is created, it has two methods- promise.then() and promise.catch()
+promise.then() is used to show the output, after resolve function
+
+When promise is completed-
+
+const obj1 = new Promise((resolve, reject) =>{
+    setTimeout(() => {
+        let rollno = [1,2,3,4,5]
+        resolve(rollno)
+    },2000)
+})
+
+//promise consume
+obj1.then((rollno) => {
+    console.log(rollno)
+})
+
+
+When promise is not completed-
+
+const obj1 = new Promise((resolve, reject) =>{
+    setTimeout(() => {
+        let rollno = [1,2,3,4,5]
+        reject('ERROR (~OoO~) ')
+    },2000)
+})
+
+//promise consume
+obj1.then((rollno) => {
+    console.log(rollno)
+}).catch((error) =>{
+    console.log('ERROR (~OoO~)')
+})
+
+***************************************
+
+Promises as an object-
+
+const obj1 = new Promise((resolve, reject) =>{
+    setTimeout(() => {
+        let roll_no = [1,2,3,4,5]
+        resolve(roll_no)
+    },2000)
+})
+
+const gbd = (indexData) =>{
+    return new Promise((resolve, reject) =>{
+        setTimeout((indexData) =>{
+            let b = {
+                name: 'A',
+                age: 18
+            }
+            resolve(`rollno: ${indexData}, name: ${b.name}, age: ${b.age}`)
+        },2000, indexData )
+    } )
+}
+
+//promise consume
+obj1.then((rollno) => {
+    console.log(rollno)
+    gbd(rollno[1]).then((k) =>{
+        console.log(k)
+    })
+}).catch((error) =>{
+    console.log(error)
+})
+
+******************
+
+const obj1 = new Promise((resolve, reject) =>{
+    setTimeout(() => {
+        let roll_no = [1,2,3,4,5]
+        resolve(roll_no)
+    },2000)
+})
+
+const gbd = (indexData) =>{
+    return new Promise((resolve, reject) =>{
+        setTimeout((indexData) =>{
+            let b = {
+                name: 'A',
+                age: 18
+            }
+            resolve(`rollno: ${indexData}, name: ${b.name}, age: ${b.age}`)
+        },2000, indexData )
+    } )
+}
+
+//promise consume
+obj1.then((rollno) => {
+    console.log(rollno)
+    return gbd(rollno[1])
+}).then((k) =>{
+    console.log(k)
+}).catch((error) =>{
+    console.log(error)
+})
+
+-----------------------------------------------------------------
+
+Async/await-
+
+There is special syntax to work with promises in a more comfortable fashion, called 'async/await'.
+
+The word 'async' before a function means that the function will always return a promise. So the async keyword is added to function to tell
+to return a promise rahter than directly returning the value.
+
+We can use await while calling any function that returns a Promise, including web API functions. This keyword await makes JS wait until 
+that promise settles and returns its result. 
+
+const obj1 = new Promise((resolve, reject) =>{
+    setTimeout(() => {
+        let roll_no = [1,2,3,4,5]
+        resolve(roll_no)
+    },2000)
+})
+
+const gbd = (indexData) =>{
+    return new Promise((resolve, reject) =>{
+        setTimeout((indexData) =>{
+            let b = {
+                name: 'A',
+                age: 18
+            }
+            resolve(`rollno: ${indexData}, name: ${b.name}, age: ${b.age}`)
+        },2000, indexData )
+    } )
+}
+
+async function gd(){
+    const rollnoData = await obj1
+    console.log(rollnoData)
+
+    const gBd = await gbd(rollnoData[1])
+    console.log(gBd)
+
+    return gBd
+}
+
+//while returning gBd
+const getName = gd()
+console.log(getName)
+
+//OR
+const getName = gd().then((myName) =>{
+    console.log(myName)
+})
+
+
+//if not returning gBd
+// gd()
+
+-----------------------------------------------------------------
+
+Error handling-
+
+const obj1 = new Promise((resolve, reject) =>{
+    setTimeout(() => {
+        let roll_no = [1,2,3,4,5]
+        resolve(roll_no)
+    },2000)
+})
+
+const gbd = (indexData) =>{
+    return new Promise((resolve, reject) =>{
+        setTimeout((indexData) =>{
+            let b = {
+                name: 'A',
+                age: 18
+            }
+            resolve(`rollno: ${indexData}, name: ${b.name}, age: ${b.age}`)
+        },2000, indexData )
+    } )
+}
+
+
+async function gd(){
+    try{
+        const rollnoData = await obj1
+        console.log(rollnoData)
+
+        const gBd = await gbd(rollnoData[1])
+        console.log(gBdfwefd)
+
+        return gBd
+    }catch(error){
+        console.log(`Error is :${error}`)
+        // alert(`Error is :${error}`)
+    }
+    
+}
+
+//while returning gBd
+const getName = gd().then((myName) =>{
+    console.log(myName)
+})
+
+
+//if not returning gBd
+// gd()
+
+-----------------------------------------------------------------
+
+Fetch API-
+
+It provides a fetch() method defined on the window object which we can use to perform requests.
+This method returns a Promise that you can use to retrieve the response of the request.
+
+<p id="apiIndia"> </p>
+
+<script>
+
+    fetch('https://api.covid19api.com/summary').then((apidata) =>{
+        //console.log(apidata)
+        return apidata.json()
+    }).then( (actualData) =>{
+        console.log(actualData)                                 //to get all the data
+        console.log(actualData.Countries[76])                   //to get data of a particular country
+        console.log(actualData.Countries[76].Country)           //to get the name of the country
+        const myData = actualData.Countries[76]
+        document.getElementById('apiIndia').innerHTML = `Country: ${myData.Country}, New cases: ${myData.NewConfirmed}, Deaths: ${myData.NewDeaths}, Recovered: ${myData.NewRecovered}`    //to make the country name visible on browser
+    }).catch((error)=>{
+        console.log(`ERROR :D ${error}`)
+    })
+
+</script>
+
+***************************************
+
+Using Async/await-
+
+<script>
+
+    async function getCovidapi(){           //async keyword is added to function to tell them to return a promise rather than directly returning the value
+        const jsonData = await fetch('https://api.covid19api.com/summary')
+
+        const jsData = await jsonData.json()
+        console.log(jsData.Countries[76].Country)
+    }
+
+    getCovidapi()
+
+</script>
+-----------------------------------------------------------------
+
+Error handling in async/await-
+
+<script>
+
+        async function getCovidapi(){           //async keyword is added to function to tell them to return a promise rather than directly returning the value
+            try{
+                const jsonData = await fetch('https://api.covid19api.com/summary')
+    
+                const jsData = await jsonData.json()
+                console.log(jsDasfta.Countries[76].Country)
+    
+            }catch(error){
+                console.log(`ERROR :D ${error}`)
+            }
+        }
+    
+        getCovidapi()
+    
+    </script>
+
+-----------------------------------------------------------------
+
+Implementing DRY concept using Function during Fetch API-
+
+<script>
+
+        async function getCovidapi(indexapi){           //async keyword is added to function to tell them to return a promise rather than directly returning the value
+            try{
+            const jsonData = await fetch('https://api.covid19api.com/summary')
+    
+            const jsData = await jsonData.json()
+            //console.log(jsData)
+            const country_name = jsData.Countries[`${indexapi}`]
+            console.log(`country: ${country_name.Country}`)
+    
+            }catch(error){
+                console.log(`ERROR :D ${error}`)
+            }
+        }
+    
+        getCovidapi(76)
+        getCovidapi(176)
+        getCovidapi(36)
+        getCovidapi(56)
+        getCovidapi(70)
+    
+    </script>

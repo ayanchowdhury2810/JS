@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <body>
+        <div class="content">
+            <div class="button_container">
+                <span class="su_button_circle"></span>
+                <a href="#" class="button_su_inner" id="fourthWay">
+                    <span class="button_text_container">Event Listner</span>
+                </a>
+            </div>
+        </div>
+
+        <script>
+            const fourthWay = document.getElementById("fourthWay")
+
+            const checkEvent = () => {
+                alert("ALERT")
+                console.log(event)
+                console.log(event.target)
+                console.log(event.type)
+            }
+
+            fourthWay.addEventListener('click', checkEvent)
+
+        </script>
+    </body>
+
+    </html>
